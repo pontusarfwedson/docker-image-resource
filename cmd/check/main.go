@@ -52,7 +52,7 @@ func main() {
 		request.Source.Password = ecrPass
 	}
 
-	fatal(fmt.Sprintf("User %s with pass %s", request.Source.Username, request.Source.Password))
+	fatal(fmt.Sprintf("User %s with pass %s test", request.Source.Username, request.Source.Password))
 
 	registryHost, repo := parseRepository(request.Source.Repository)
 
