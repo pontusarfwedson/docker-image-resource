@@ -52,6 +52,8 @@ func main() {
 		request.Source.Password = ecrPass
 	}
 
+	fatal(fmt.Sprintf("User %s with pass %s", request.Source.Username, request.Source.Password))
+
 	registryHost, repo := parseRepository(request.Source.Repository)
 
 	if len(request.Source.RegistryMirror) > 0 {
@@ -191,7 +193,7 @@ func makeTransport(logger lager.Logger, request CheckRequest, registryHost strin
 
 	pingClient := &http.Client{
 		Transport: retryRoundTripper(logger, authTransport),
-		Timeout: 1 * time.Minute,
+		Timeout:   1 * time.Minute,
 	}
 
 	challengeManager := auth.NewSimpleChallengeManager()
